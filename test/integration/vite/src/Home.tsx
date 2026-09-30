@@ -11,6 +11,7 @@ import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 import { useState } from "react";
 import { Table } from "@codegouvfr/react-dsfr/Table";
 import { Tile } from "@codegouvfr/react-dsfr/Tile";
+import { Share } from "@codegouvfr/react-dsfr/Share";
 
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import { ContentMedia } from "@codegouvfr/react-dsfr/ContentMedia";
@@ -86,7 +87,7 @@ export function Home() {
                 <HighlightExample />
             </div>
             <div className={fr.cx("fr-my-4w")}>
-                <ContentMediaExamples />
+                <ShareExample />
             </div>
         </>
     );
@@ -270,79 +271,52 @@ function HighlightExample() {
     )
 }
 
-function ContentMediaExamples() {
+function ShareExample() {
     return (
-        <>
-            <h2>ContentMedia — Image</h2>
-            <ContentMedia
-                type="img"
-                label="Exemple d'image responsive"
-                imgProps={{
-                    src: "https://www.w3schools.com/css/img_5terre.jpg",
-                    alt: "Paysage de Cinque Terre en Italie"
-                }}
-                caption="© W3Schools – Cinque Terre, Italie"
-                captionLink={{
-                    label: "Voir la source",
+        <Share
+            buttons={[
+                {
+                    type: "facebook",
                     linkProps: {
-                        href: "https://www.w3schools.com",
+                        href: "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.systeme-de-design.gouv.fr",
                         target: "_blank",
                         rel: "noopener noreferrer"
                     }
-                }}
-            />
-
-            <h2 className={fr.cx("fr-mt-4w")}>ContentMedia — Iframe (YouTube)</h2>
-            <ContentMedia
-                type="iframe"
-                iframeProps={{
-                    src: "https://www.youtube.com/embed/HyirpmPL43I",
-                    title: "Vidéo de présentation du Service National Universel – voir transcription ci-dessous",
-                    allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
-                    allowFullScreen: true
-                }}
-                caption="Service National Universel – présentation officielle"
-                captionLink={{
-                    label: "Voir sur YouTube",
+                },
+                {
+                    type: "twitter-x",
                     linkProps: {
-                        href: "https://www.youtube.com/watch?v=HyirpmPL43I",
+                        href: "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.systeme-de-design.gouv.fr",
                         target: "_blank",
                         rel: "noopener noreferrer"
                     }
-                }}
-            />
-
-            <h2 className={fr.cx("fr-mt-4w")}>ContentMedia — Vidéo native</h2>
-            <ContentMedia
-                type="video"
-                alternative="Vidéo de démonstration Big Buck Bunny – voir transcription ci-dessous"
-                videoProps={{ src: "https://www.w3schools.com/html/mov_bbb.mp4" }}
-                caption="Big Buck Bunny – Blender Foundation"
-                captionLink={{
-                    label: "Voir la source",
+                },
+                {
+                    type: "linkedin",
                     linkProps: {
-                        href: "https://www.w3schools.com/html/html5_video.asp",
+                        href: "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.systeme-de-design.gouv.fr",
                         target: "_blank",
                         rel: "noopener noreferrer"
                     }
-                }}
-            />
-
-            <h2 className={fr.cx("fr-mt-4w")}>ContentMedia — Audio natif</h2>
-            <ContentMedia
-                type="audio"
-                alternative="Son d'un cheval – voir transcription ci-dessous"
-                audioProps={{ src: "https://www.w3schools.com/html/horse.mp3" }}
-                caption="Illustration sonore – W3Schools"
-                captionLink={{
-                    label: "Voir la source",
+                },
+                {
+                    type: "mail",
                     linkProps: {
-                        href: "https://www.w3schools.com/html/html5_audio.asp",
-                        target: "_blank",
-                        rel: "noopener noreferrer"
+                        href: "mailto:?subject=DSFR&body=Decouvrez%20le%20DSFR%20https%3A%2F%2Fwww.systeme-de-design.gouv.fr"
                     }
-                }}
-            />
-        </>
+                },
+                {
+                    type: "copy",
+                    buttonProps: {
+                        type: "button",
+                        onClick: () => {
+                            navigator.clipboard
+                                .writeText(window.location.href)
+                                .then(() => alert("Adresse copiee dans le presse-papier."));
+                        }
+                    }
+                }
+            ]}
+        />
     );
 }
