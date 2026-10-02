@@ -14,7 +14,6 @@ import { Tile } from "@codegouvfr/react-dsfr/Tile";
 import { Share } from "@codegouvfr/react-dsfr/Share";
 
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
-import { ContentMedia } from "@codegouvfr/react-dsfr/ContentMedia";
 import { Book, Money, Police, Sun, LocationFrance } from '@codegouvfr/react-dsfr/picto';
 import CityHall from './assets/city-hall.svg';
 
